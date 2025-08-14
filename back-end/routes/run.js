@@ -66,7 +66,8 @@ const selectedLanguage = languageMap[language];
         passed: actualOutput === expectedOutput
       });
     }
-
+   console.log(testCaseResults);
+   
     return res.json({
       success: true,
       output: testCaseResults[0]?.output || '',
