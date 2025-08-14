@@ -35,37 +35,45 @@ router.post('/', async (req, res) => {
 
 const selectedLanguage = languageMap[language];
 
-    for (let testCase of testCases) {
-      const payload = {
-        language: selectedLanguage,
-        version: "*",
-        files: [{ name: "main", content: source_code }],
-        stdin: testCase.input || ''
-      };
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-      const pistonRes = await axios.post(PISTON_API, payload);
-      const { run } = pistonRes.data;
-      const { stdout = '', stderr = '', output = '' } = run;
+for (let testCase of testCases) {
+  const payload = {
+    language: selectedLanguage,
+    version: "*",
+    files: [{ name: "main", content: source_code }],
+    stdin: testCase.input || ''
+  };
 
-      if (stderr) {
-        return res.json({
-          success: false,
-          errorType: 'Runtime Error',
-          message: stderr,
-          status: 'Runtime Error'
-        });
-      }
+  const pistonRes = await axios.post(PISTON_API, payload);
+  const { run } = pistonRes.data;
+  const { stdout = '', stderr = '' } = run;
 
-      const actualOutput = stdout.trim();
-      const expectedOutput = (testCase.output || '').trim();
+  if (stderr) {
+    return res.json({
+      success: false,
+      errorType: 'Runtime Error',
+      message: stderr,
+      status: 'Runtime Error'
+    });
+  }
 
-      testCaseResults.push({
-        input: testCase.input,
-        expected: expectedOutput,
-        output: actualOutput,
-        passed: actualOutput === expectedOutput
-      });
-    }
+  const actualOutput = stdout.trim();
+  const expectedOutput = (testCase.output || '').trim();
+
+  testCaseResults.push({
+    input: testCase.input,
+    expected: expectedOutput,
+    output: actualOutput,
+    passed: actualOutput === expectedOutput
+  });
+
+  // 👇 throttle requests to avoid rate-limit
+  await delay(250); // 250ms is safe (more than piston’s 200ms limit)
+}
+
    console.log(testCaseResults);
    
     return res.json({

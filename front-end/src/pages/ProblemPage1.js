@@ -21,7 +21,7 @@ const ProblemPage1 = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { setIsLoading } = useLoading();
-  const problemId = '6884c2f45b4f97e5ecb7316d';
+  const problemId = '689d7aeb4d8f71cee9ca8991';
   const [open, setOpen] = useState(false)
   const { username: stateUsername, userId: stateUserId } = location.state || {};
   const [username, setUsername] = useState(stateUsername || sessionStorage.getItem('username'));
@@ -127,7 +127,7 @@ const handleRun = async () => {
     const res = await axios.post('https://codingcontest.onrender.com/api/run', {
       source_code: sourceCode,
       language: languageId,
-      problemId: '6884c2f45b4f97e5ecb7316d',
+      problemId: '689d7aeb4d8f71cee9ca8991',
     });
 
     const response = res.data;
@@ -177,7 +177,7 @@ const handleSubmit = async () => {
     const res = await axios.post('https://codingcontest.onrender.com/api/submit', {
        userId: userId,           // dynamically from props
       username: username,              // ⬅️ Replace this with dynamic username
-      problemId: '6884c2f45b4f97e5ecb7316d',
+      problemId: '689d7aeb4d8f71cee9ca8991',
       source_code: sourceCode,
       language: languageId,
       score: 0,

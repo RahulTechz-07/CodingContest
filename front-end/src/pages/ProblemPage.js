@@ -22,12 +22,12 @@ const ProblemPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { setIsLoading } = useLoading();
-  const problemId = '687f995ab32165f3c22dc283';
+  const problemId = '689d7ad14d8f71cee9ca898e';
   const [open, setOpen] = useState(false)
 
 
   const [username, setUsername] = useState(sessionStorage.getItem('username'));
-const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
+  const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
 
 
 
@@ -149,7 +149,7 @@ const handleRun = async () => {
     const res = await axios.post('https://codingcontest.onrender.com/api/run', {
       source_code: sourceCode,
       language: languageId,
-      problemId: '687f995ab32165f3c22dc283',
+      problemId: '689d7ad14d8f71cee9ca898e',
     });
 
     const response = res.data;
@@ -200,7 +200,7 @@ const handleSubmit = async () => {
     const res = await axios.post('https://codingcontest.onrender.com/api/submit/', {
       userId: userId,           // dynamically from props
       username: username,              // ⬅️ Replace this with dynamic username
-      problemId: '687f995ab32165f3c22dc283',
+      problemId: '689d7ad14d8f71cee9ca898e',
       source_code: sourceCode,
       language: languageId,
       description: 'Sum of Two Numbers', // You can use `problem.title` here too
