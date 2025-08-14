@@ -26,8 +26,9 @@ const ProblemPage = () => {
   const [open, setOpen] = useState(false)
 
 
-  sessionStorage.setItem('username', res.data.username);
-  sessionStorage.setItem('userId', res.data.userId);
+  const [username, setUsername] = useState(sessionStorage.getItem('username'));
+const [userId, setUserId] = useState(sessionStorage.getItem('userId'));
+
 
 
 
