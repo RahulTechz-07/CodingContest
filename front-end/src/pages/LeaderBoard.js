@@ -6,7 +6,7 @@ import HomeHeader from './HomeHeader';
 import backgroundImg from '../assests/bg.png';
 import { motion } from 'framer-motion';
 
-const socket = io('http://localhost:5001'); // Adjust this if hosted
+const socket = io('https://codingcontest.onrender.com'); // Adjust this if hosted
 
 const Leaderboard = () => {
   const [leaderboard, setLeaderboard] = useState([]);
@@ -16,7 +16,7 @@ const Leaderboard = () => {
       setLeaderboard(data);
     });
 
-    fetch('http://localhost:5001/api/leaderboard')
+    fetch('https://codingcontest.onrender.com/api/leaderboard')
       .then(res => res.json())
       .then(data => setLeaderboard(data));
 

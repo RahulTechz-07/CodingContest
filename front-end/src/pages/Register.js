@@ -65,7 +65,7 @@ const Register = ({ onRegistered }) => {
   }
 
   try {
-    const res = await axios.post('http://localhost:5001/api/register', formData);
+    const res = await axios.post('https://codingcontest.onrender.com/api/register', formData);
     const userId = res.data.user.userId;
 
     sessionStorage.setItem('username', name);

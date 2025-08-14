@@ -118,7 +118,7 @@ Good luck, and keep coding!
 const handleRun = async () => {
   setIsLoading(true);
   try {
-    const res = await axios.post('/api/run', {
+    const res = await axios.post('https://codingcontest.onrender.com/api/run', {
       source_code: sourceCode,
       language: languageId,
       problemId: '6884ce815b4f97e5ecb73171',
@@ -168,7 +168,7 @@ const handleSubmit = async () => {
   try {
     console.log("🚀 Starting submission...");
 
-    const res = await axios.post('/api/submit', {
+    const res = await axios.post('https://codingcontest.onrender.com/api/submit', {
        userId: userId,           // dynamically from props
       username: username,              // ⬅️ Replace this with dynamic username
       problemId: '6884ce815b4f97e5ecb73171',
@@ -281,7 +281,7 @@ const handleSubmit = async () => {
           onClick={async () => {
             const email = sessionStorage.getItem("email");
             if (!email) return;
-            await axios.post("http://localhost:5001/api/end-contest", {
+            await axios.post("https://codingcontest.onrender.com/api/end-contest", {
               email,
               endTime: Date.now(),
             });
