@@ -7,6 +7,8 @@ const router = (io) => {
   const r = express.Router();
 
   // Function to run code via Piston
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 const runCode = async (language, source_code, stdin) => {
   const languageMap = {
     python: "python3",
@@ -30,13 +32,15 @@ const runCode = async (language, source_code, stdin) => {
       stdin: stdin
     });
 
+    // 👇 Add small delay after each request
+    await delay(250);
+
     return response.data.run;
   } catch (err) {
     console.error("❌ Piston error:", err.response?.data || err.message);
     return { stdout: "", stderr: err.message };
   }
 };
-
 
 
   r.post('/', async (req, res) => {
