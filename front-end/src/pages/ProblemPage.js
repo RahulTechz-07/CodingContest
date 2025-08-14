@@ -26,12 +26,10 @@ const ProblemPage = () => {
   const [open, setOpen] = useState(false)
 
 
-    const [username, setUsername] = useState(
-    location.state?.username || sessionStorage.getItem('username')
-  );
-  const [userId, setUserId] = useState(
-    location.state?.userId || sessionStorage.getItem('userId')
-  );
+  sessionStorage.setItem('username', res.data.username);
+  sessionStorage.setItem('userId', res.data.userId);
+
+
 
 useEffect(() => {
   if (username) {

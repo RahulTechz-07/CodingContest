@@ -8,51 +8,50 @@ import HomeFooter from './HomeFooter';
 
 const InstructionPage = () => {
   const navigate = useNavigate();
+
+  // ✅ Prevent back navigation
   useEffect(() => {
-  window.history.pushState(null, null, window.location.href);
-  const blockBack = () => {
+    const blockBack = () => {
+      window.history.pushState(null, null, window.location.href);
+    };
+
     window.history.pushState(null, null, window.location.href);
-  };
-  window.addEventListener('popstate', blockBack);
+    window.addEventListener("popstate", blockBack);
 
-  return () => {
-    window.removeEventListener('popstate', blockBack);
-  };
-}, []);
+    return () => {
+      window.removeEventListener("popstate", blockBack);
+    };
+  }, []);
 
-
+  // ✅ Check registration and contest state
   useEffect(() => {
-    const username = sessionStorage.getItem('username');
-    const userId = sessionStorage.getItem('userId');
+    const username = sessionStorage.getItem("username");
+    const userId = sessionStorage.getItem("userId");
 
-    // Not registered? Go to register page
     if (!username || !userId) {
-      navigate('/register');
+      // Not registered → go to register
+      navigate("/register");
       return;
     }
 
-    // Already started? Go directly to problem1
-    const hasStarted = sessionStorage.getItem('hasStarted');
+    // Check if user already started
+    const hasStarted = sessionStorage.getItem(`hasStarted-${username}`);
     if (hasStarted) {
-      navigate('/problem1', {
-        state: { userId, username }
-      });
+      navigate("/problem1", { state: { userId, username } });
     }
   }, [navigate]);
 
- const handleStart = () => {
-  const startTime = new Date().getTime();
-  const username = sessionStorage.getItem('username');
-  const userId = sessionStorage.getItem('userId');
+  // ✅ Start contest
+  const handleStart = () => {
+    const username = sessionStorage.getItem("username");
+    const userId = sessionStorage.getItem("userId");
+    const startTime = Date.now();
 
-  sessionStorage.setItem(`startTime-${username}`, startTime); // ✅ Fix: use username-based key
-  sessionStorage.setItem('hasStarted', true);
+    sessionStorage.setItem(`startTime-${username}`, startTime);
+    sessionStorage.setItem(`hasStarted-${username}`, true);
 
-  navigate('/problem1', {
-    state: { userId, username }
-  });
-};
-
+    navigate("/problem1", { state: { userId, username } });
+  };
 
 
  return (
