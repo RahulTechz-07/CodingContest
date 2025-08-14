@@ -1,0 +1,38 @@
+.home-footer {
+  background: linear-gradient(90deg, #0f172a, #1e293b); /* consistent with header */
+  color: #e8e8e8;
+  text-align: center;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3); /* deeper top shadow */
+  border-top: 2px solid #334155;
+  animation: fadeInUp 1s ease;
+  letter-spacing: 0.3px;
+  position: relative;
+  z-index: 5;
+}
+.home-footer p{
+  color: #ffffff;
+  font-size: medium;
+   margin-top: 20px;
+}
+/* Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+  .home-footer {
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+}

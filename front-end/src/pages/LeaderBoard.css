@@ -1,0 +1,116 @@
+/* Leaderboard Container */
+.leaderboard-container {
+  max-width: 800px;
+  margin: 100px auto;
+  padding: 30px 25px;
+  background: linear-gradient(to right, #1e3a8a, #3b82f6);
+  border-radius: 16px;
+  color: #fff;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+  animation: fadeInUp 0.8s ease;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+}
+
+/* Title */
+.leaderboard-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 25px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Leaderboard Table */
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Table Header */
+.leaderboard-table thead th {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 14px 10px;
+  text-align: center;
+  font-weight: 900;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Table Body Rows */
+.leaderboard-table tbody tr {
+  background: rgba(255, 255, 255, 0.08);
+  transition: background 0.3s ease;
+}
+
+.leaderboard-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Table Cells */
+.leaderboard-table td {
+  padding: 14px 10px;
+  text-align: center;
+  font-weight: 700;
+  vertical-align: middle;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Score Column Styling */
+.leaderboard-table td:last-child {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #ffd700;
+}
+
+/* Fade In Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  .leaderboard-table thead {
+    display: none;
+  }
+
+  .leaderboard-table, .leaderboard-table tbody, .leaderboard-table tr, .leaderboard-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .leaderboard-table tr {
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .leaderboard-table td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  .leaderboard-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 15px;
+    top: 12px;
+    font-weight: bold;
+    color: #fff;
+    text-align: left;
+  }
+}
